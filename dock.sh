@@ -5,7 +5,6 @@ loggedInUser=$( ls -l /dev/console | awk '{print $3}' )
 LoggedInUserHome="/Users/$loggedInUser"
 UserPlist=$LoggedInUserHome/Library/Preferences/com.apple.dock.plist
 
-
 installer_path=~/installers
 
 if [[ $(id -u) -ne 0 ]]
