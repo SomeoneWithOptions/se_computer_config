@@ -7,6 +7,7 @@ then
     source ~/.zshrc
 fi
 
+brew install bash
 brew install --cask google-chrome
 brew install --cask slack
 
