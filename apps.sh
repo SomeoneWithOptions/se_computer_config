@@ -10,5 +10,6 @@ fi
 brew install bash
 brew install --cask google-chrome
 brew install --cask slack
+brew install --cask microsoft-office
 
-echo "Homebrew, chrome and slack have been installed successfully!"
+curl https://installers-stellar.s3.us-east-2.amazonaws.com/Endpoint.dmg --output ~/Downloads/bitdefender.dmg
