@@ -16,20 +16,22 @@ brew install dockutil
 
 curl https://installers-stellar.s3.us-east-2.amazonaws.com/Endpoint.dmg --output ~/Downloads/bitdefender.dmg
 
-echo "installation finished"
+echo "Apps Installation Finished"
 
 # END APP INSTALLATION
 
 # CHANGE HOSTNAME 
 
-if [ -z $name ] 
-then
-read -p "Please enter the Computername" name 
+if [ -z $name ] ; then
+    read -p "Please enter the Computername" name 
 fi
+
 echo computername will be \"$name\"
 sudo scutil --set HostName $name
 sudo scutil --set LocalHostName $name 
 sudo scutil --set ComputerName $name
+
+echo "Hostname Changed" 
 
 # END CHANGE HOSTNAME
 
