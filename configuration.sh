@@ -10,8 +10,10 @@ echo using $loggedInUser to run commands
 if ! command -v brew &> /dev/null
 then
     sudo -u $loggedInUser /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    sudo -u $loggedInUser echo "export PATH=/opt/homebrew/bin:$PATH" >> ~/.zshrc
-    sudo -u $loggedInUser source ~/.zshrc
+    sudo -u $loggedInUser (echo ; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> /Users/$loggedInUser/.zprofile
+    echo "Wrote to File /Users/$loggedInUser/.zprofile"
+    sudo -u $loggedInUser eval "$(/opt/homebrew/bin/brew shellenv)"
+    sudo -u $loggedInUser brew --version 
 fi
 
 sudo -u $loggedInUser brew install bash
