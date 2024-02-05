@@ -20,7 +20,9 @@ sudo -u $loggedInUser brew install bash
 sudo -u $loggedInUser brew install --cask google-chrome
 sudo -u $loggedInUser brew install --cask slack
 sudo -u $loggedInUser brew install --cask microsoft-office
-sudo -u $loggedInUser brew install dockutil 
+sudo -u $loggedInUser brew install dockutil
+sudo -u $loggedInUser brew install --cask visual-studio-code 
+sudo -u $loggedInUser brew install --cask appcleaner
 
 curl https://installers-stellar.s3.us-east-2.amazonaws.com/Endpoint.dmg --output ~/Downloads/bitdefender.dmg
 
