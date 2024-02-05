@@ -12,17 +12,16 @@ then
     sudo -u $loggedInUser /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     sudo -u $loggedInUser echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/$loggedInUser/.zprofile
     echo "Wrote to File /Users/$loggedInUser/.zprofile"
-    sudo -u $loggedInUser eval "$(/opt/homebrew/bin/brew shellenv)"
-    sudo -u $loggedInUser brew --version 
+    sudo -u $loggedInUser /opt/homebrew/bin/brew --version 
 fi
 
-sudo -u $loggedInUser brew install bash
-sudo -u $loggedInUser brew install --cask google-chrome
-sudo -u $loggedInUser brew install --cask slack
-sudo -u $loggedInUser brew install --cask microsoft-office
-sudo -u $loggedInUser brew install dockutil
-sudo -u $loggedInUser brew install --cask visual-studio-code 
-sudo -u $loggedInUser brew install --cask appcleaner
+sudo -u $loggedInUser /opt/homebrew/bin/brew install bash
+sudo -u $loggedInUser /opt/homebrew/bin/brew install --cask google-chrome
+sudo -u $loggedInUser /opt/homebrew/bin/brew install --cask slack
+sudo -u $loggedInUser /opt/homebrew/bin/brew install --cask microsoft-office
+sudo -u $loggedInUser /opt/homebrew/bin/brew install dockutil
+sudo -u $loggedInUser /opt/homebrew/bin/brew install --cask visual-studio-code 
+sudo -u $loggedInUser /opt/homebrew/bin/brew install --cask appcleaner
 
 curl https://installers-stellar.s3.us-east-2.amazonaws.com/Endpoint.dmg --output ~/Downloads/bitdefender.dmg
 
@@ -33,7 +32,7 @@ echo "Apps Installation Finished"
 # CHANGE HOSTNAME 
 
 if [ -z $name ] ; then
-    read -p "Please enter the Computername" name 
+    read -p "Please enter the Computername : " name 
 fi
 
 echo computername will be \"$name\"
@@ -61,6 +60,7 @@ echo "Admin User Created"
 
 # DOCK CONFIGURATION 
 
+sudo -u $loggedInUser dockutil --remove all --no-restart $UserPlist
 sudo -u $loggedInUser dockutil --add "/Applications/Google Chrome.app" --no-restart $UserPlist
 sudo -u $loggedInUser dockutil --add "/Applications/Slack.app/" --no-restart $UserPlist
 sudo -u $loggedInUser dockutil --add /System/Applications/System\ Settings.app --position end --no-restart $UserPlist
