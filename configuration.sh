@@ -9,7 +9,7 @@ echo using $loggedInUser to run commands
 # APP INSTALLATION
 if ! command -v brew &> /dev/null
 then
-    sudo -u $loggedInUser bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    sudo -u $loggedInUser /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     sudo -u $loggedInUser echo "export PATH=/opt/homebrew/bin:$PATH" >> ~/.zshrc
     sudo -u $loggedInUser source ~/.zshrc
 fi
