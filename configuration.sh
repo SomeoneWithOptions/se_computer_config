@@ -31,16 +31,17 @@ echo "Apps Installation Finished"
 
 # CHANGE HOSTNAME
 
-if [ -z $name ] ; then
-    read -p "Please enter the Computername : " name
-fi
+# if [ -z $name ] ; then
+#     read -p "Please enter the Computername : " name
+# fi
 
-echo computername will be \"$name\"
-sudo scutil --set HostName $name
-sudo scutil --set LocalHostName $name
-sudo scutil --set ComputerName $name
+echo computername will be \"$loggedInUser\"
 
-echo "Hostname Changed to $name"
+sudo scutil --set HostName $loggedInUser
+sudo scutil --set LocalHostName $loggedInUser
+sudo scutil --set ComputerName $loggedInUser
+
+echo "Hostname Changed to $loggedInUser"
 
 # END CHANGE HOSTNAME
 
