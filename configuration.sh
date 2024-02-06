@@ -12,7 +12,7 @@ then
     sudo -u $loggedInUser /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     sudo -u $loggedInUser echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/$loggedInUser/.zprofile
     echo "Wrote to File /Users/$loggedInUser/.zprofile"
-    sudo -u $loggedInUser /opt/homebrew/bin/brew --version 
+    sudo -u $loggedInUser /opt/homebrew/bin/brew --version
 fi
 
 sudo -u $loggedInUser /opt/homebrew/bin/brew install bash
@@ -20,7 +20,7 @@ sudo -u $loggedInUser /opt/homebrew/bin/brew install --cask google-chrome
 sudo -u $loggedInUser /opt/homebrew/bin/brew install --cask slack
 sudo -u $loggedInUser /opt/homebrew/bin/brew install --cask microsoft-office
 sudo -u $loggedInUser /opt/homebrew/bin/brew install dockutil
-sudo -u $loggedInUser /opt/homebrew/bin/brew install --cask visual-studio-code 
+sudo -u $loggedInUser /opt/homebrew/bin/brew install --cask visual-studio-code
 sudo -u $loggedInUser /opt/homebrew/bin/brew install --cask appcleaner
 
 curl https://installers-stellar.s3.us-east-2.amazonaws.com/Endpoint.dmg --output ~/Downloads/bitdefender.dmg
@@ -29,22 +29,22 @@ echo "Apps Installation Finished"
 
 # END APP INSTALLATION
 
-# CHANGE HOSTNAME 
+# CHANGE HOSTNAME
 
 if [ -z $name ] ; then
-    read -p "Please enter the Computername : " name 
+    read -p "Please enter the Computername : " name
 fi
 
 echo computername will be \"$name\"
 sudo scutil --set HostName $name
-sudo scutil --set LocalHostName $name 
+sudo scutil --set LocalHostName $name
 sudo scutil --set ComputerName $name
 
-echo "Hostname Changed to $name" 
+echo "Hostname Changed to $name"
 
 # END CHANGE HOSTNAME
 
-# CREATE ADMIN USER 
+# CREATE ADMIN USER
 
 sudo dscl . -delete /Users/p202admin
 
@@ -58,29 +58,29 @@ echo "Admin User Created"
 
 # END CREATE ADMIN USER
 
-# DOCK CONFIGURATION 
+# DOCK CONFIGURATION
 
-sudo -u $loggedInUser dockutil --remove all --no-restart $UserPlist
-sudo -u $loggedInUser dockutil --add "/Applications/Google Chrome.app" --no-restart $UserPlist
-sudo -u $loggedInUser dockutil --add "/Applications/Slack.app/" --no-restart $UserPlist
-sudo -u $loggedInUser dockutil --add /System/Applications/System\ Settings.app --position end --no-restart $UserPlist
+sudo -u $loggedInUser /opt/homebrew/bin/dockutil --remove all --no-restart $UserPlist
+sudo -u $loggedInUser /opt/homebrew/bin/dockutil --add "/Applications/Google Chrome.app" --no-restart $UserPlist
+sudo -u $loggedInUser /opt/homebrew/bin/dockutil --add "/Applications/Slack.app/" --no-restart $UserPlist
+sudo -u $loggedInUser /opt/homebrew/bin/dockutil --add /System/Applications/System\ Settings.app --position end --no-restart $UserPlist
 sudo -u $loggedInUser killall Dock
 
 echo "Dock Configuration Finished"
 
 # END DOCK CONFIGURATION
 
-#ENABLE FIREVAULT 
+#ENABLE FIREVAULT
 
-fdeStatus=$(fdesetup status)
-if [[ $fdeStatus == "FileVault is Off" ]]; then
-    fdesetup enable -user $loggedInUser -defer /private/var/root/recovery.plist -keychain -forceatlogin
-    logout
-    echo "FileVault is not enabled. Logging off the user in 3 seconds to force FileVault activation."
-    sleep 3
-    logout
-else
-    echo "FileVault is enabled."
-fi
+# fdeStatus=$(fdesetup status)
+# if [[ $fdeStatus == "FileVault is Off" ]]; then
+#     fdesetup enable -user $loggedInUser -defer /private/var/root/recovery.plist -keychain -forceatlogin
+#     logout
+#     echo "FileVault is not enabled. Logging off the user in 3 seconds to force FileVault activation."
+#     sleep 3
+#     logout
+# else
+#     echo "FileVault is enabled."
+# fi
 
-# END ENABLE FIREVAULT
+# END ENABLE FIREVAUT
