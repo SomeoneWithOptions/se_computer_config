@@ -72,15 +72,16 @@ echo "Dock Configuration Finished"
 
 #ENABLE FIREVAULT
 
-# fdeStatus=$(fdesetup status)
-# if [[ $fdeStatus == "FileVault is Off" ]]; then
-#     fdesetup enable -user $loggedInUser -defer /private/var/root/recovery.plist -keychain -forceatlogin
-#     logout
-#     echo "FileVault is not enabled. Logging off the user in 3 seconds to force FileVault activation."
-#     sleep 3
-#     logout
-# else
-#     echo "FileVault is enabled."
-# fi
+loggedInUser=$( ls -l /dev/console | awk '{print $3}' )
+
+fstatus=$(fdesetup status | grep -i "on")
+echo $fstatus
+
+if [[ -n $fstatus ]]; then
+    echo "Firevault is Already ON"
+fi
+
+sudo fdesetup enable -user $loggedInUser
+sudo fdesetup changerecovery -personal -output ~/r
 
 # END ENABLE FIREVAUT
