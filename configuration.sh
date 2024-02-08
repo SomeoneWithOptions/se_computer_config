@@ -80,6 +80,5 @@ if [[ -n $fstatus ]]; then
 fi
 
 sudo fdesetup enable -user $loggedInUser
-sudo fdesetup changerecovery -personal -output ~/r
 
 # END ENABLE FIREVAUT
