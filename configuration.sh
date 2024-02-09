@@ -66,6 +66,7 @@ sudo -u $loggedInUser /opt/homebrew/bin/dockutil --remove all --no-restart $User
 sudo -u $loggedInUser /opt/homebrew/bin/dockutil --add "/Applications/Google Chrome.app" --no-restart $UserPlist
 sudo -u $loggedInUser /opt/homebrew/bin/dockutil --add "/Applications/Slack.app/" --no-restart $UserPlist
 sudo -u $loggedInUser /opt/homebrew/bin/dockutil --add /System/Applications/System\ Settings.app --position end --no-restart $UserPlist
+sudo -u $loggedInUser defaults write com.apple.dock show-recents -bool FALSE ;
 sudo -u $loggedInUser killall Dock
 
 echo "Dock Configuration Finished"
