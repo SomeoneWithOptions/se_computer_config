@@ -16,6 +16,7 @@ then
 fi
 
 sudo -u $loggedInUser /opt/homebrew/bin/brew install bash
+sudo -u $loggedInUser /opt/homebrew/bin/brew install --cask firefox
 sudo -u $loggedInUser /opt/homebrew/bin/brew install --cask google-chrome
 sudo -u $loggedInUser /opt/homebrew/bin/brew install --cask slack
 sudo -u $loggedInUser /opt/homebrew/bin/brew install --cask microsoft-office
