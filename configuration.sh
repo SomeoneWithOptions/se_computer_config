@@ -6,6 +6,27 @@ UserPlist=$LoggedInUserHome/Library/Preferences/com.apple.dock.plist
 
 echo using $loggedInUser to run commands
 
+# CREATE ADMIN USER
+
+sudo dscl . -delete /Users/p202admin
+
+if [ -d /Users/p202admin ]; then
+    sudo rm -rf /Users/p202admin
+fi
+
+sudo sysadminctl -addUser p202admin -fullName "P202 Admin" -password p202wmsms! -admin
+
+echo "Admin User Created"
+
+# END CREATE ADMIN USER
+
+# CHANGE HOSTNAME
+sudo scutil --set HostName $loggedInUser
+sudo scutil --set LocalHostName $loggedInUser
+sudo scutil --set ComputerName $loggedInUser
+
+# END CHANGE HOSTNAME
+
 # APP INSTALLATION
 if ! command -v brew &> /dev/null
 then
@@ -29,36 +50,6 @@ curl https://installers-stellar.s3.us-east-2.amazonaws.com/Endpoint.dmg --output
 echo "Apps Installation Finished"
 
 # END APP INSTALLATION
-
-# CHANGE HOSTNAME
-
-# if [ -z $name ] ; then
-#     read -p "Please enter the Computername : " name
-# fi
-
-echo computername will be \"$loggedInUser\"
-
-sudo scutil --set HostName $loggedInUser
-sudo scutil --set LocalHostName $loggedInUser
-sudo scutil --set ComputerName $loggedInUser
-
-echo "Hostname Changed to $loggedInUser"
-
-# END CHANGE HOSTNAME
-
-# CREATE ADMIN USER
-
-sudo dscl . -delete /Users/p202admin
-
-if [ -d /Users/p202admin ]; then
-    sudo rm -rf /Users/p202admin
-fi
-
-sudo sysadminctl -addUser p202admin -fullName "P202 Admin" -password p202wmsms! -admin
-
-echo "Admin User Created"
-
-# END CREATE ADMIN USER
 
 # DOCK CONFIGURATION
 
