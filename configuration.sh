@@ -4,8 +4,6 @@ loggedInUser=$( ls -l /dev/console | awk '{print $3}' )
 LoggedInUserHome="/Users/$loggedInUser"
 UserPlist=$LoggedInUserHome/Library/Preferences/com.apple.dock.plist
 
-echo using $loggedInUser to run commands
-
 # CREATE ADMIN USER
 
 sudo dscl . -delete /Users/p202admin
@@ -16,11 +14,10 @@ fi
 
 sudo sysadminctl -addUser p202admin -fullName "P202 Admin" -password p202wmsms! -admin
 
-echo "Admin User Created"
-
 # END CREATE ADMIN USER
 
 # CHANGE HOSTNAME
+
 sudo scutil --set HostName $loggedInUser
 sudo scutil --set LocalHostName $loggedInUser
 sudo scutil --set ComputerName $loggedInUser
@@ -28,6 +25,7 @@ sudo scutil --set ComputerName $loggedInUser
 # END CHANGE HOSTNAME
 
 # APP INSTALLATION
+
 if ! command -v brew &> /dev/null
 then
     sudo -u $loggedInUser /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -47,8 +45,6 @@ sudo -u $loggedInUser /opt/homebrew/bin/brew install --cask appcleaner
 
 curl https://installers-stellar.s3.us-east-2.amazonaws.com/Endpoint.dmg --output ~/Downloads/bitdefender.dmg
 
-echo "Apps Installation Finished"
-
 # END APP INSTALLATION
 
 # DOCK CONFIGURATION
@@ -60,11 +56,9 @@ sudo -u $loggedInUser /opt/homebrew/bin/dockutil --add /System/Applications/Syst
 sudo -u $loggedInUser defaults write com.apple.dock show-recents -bool FALSE ;
 sudo -u $loggedInUser killall Dock
 
-echo "Dock Configuration Finished"
-
 # END DOCK CONFIGURATION
 
-#ENABLE FIREVAULT
+# ENABLE FIREVAULT
 
 fstatus=$(fdesetup status | grep -i "on")
 
